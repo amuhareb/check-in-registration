@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="counter-checkin.css">
+    <!-- <link rel="stylesheet" href="counter-checkin-mobile.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js" integrity="sha512-CNgIRecGo7nphbeZ04Sc13ka07paqdeTu0WR1IM4kNcpmBAUSHSQX0FslNhTDadL4O5SAGapGt4FodqL8My0mA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>    
+    <title id="title">Counter Check-in</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@latest/dist/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/3.2.3/dexie.js"></script>
+
+    <!-- interact.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.10.17/interact.js" integrity="sha512-tOggANFWm10wOpOiRBtpPdqTSGUhkhM17eMSCB5iGVendPzV2P0fb4o461WgacyFPJYaqWzgxNOhFojg3+a8CQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div class="logo" id="logo">
+        <img src="mtrl-logo-rectangle.svg" alt="logo">
+    </div>
+    <div id="main-section-columns" class="main-section-columns">
+    <!-- left column -->
+    <div class="left-column" id="left-column">
+        <h1 class="title" id="title">Counter Check-in</h1>
+        <div class="staff-ID" id="staff-container">
+            <label for="staff-ID">Staff ID:</label>
+            <input class="stafftextinput" type="text" id="staff-ID">
+            <button class="staff-submit-button" id="submit-button">Submit</button>
+        </div>
+        <h2 class="greeting" id="staff-greeting"></h2>
+        <button class="update-button" id="update-button">Update Staff ID</button>
+        <div class="container">
+            <button class="connect-btn" id="connect-button" onclick="connect()">Connect</button>
+            <div class="previousdevices" id="previousdevices">
+                <h2>Previous Devices</h2>
+                <ul class="device-list" id="device-list">
+                </ul>
+            </div>
+            <form>
+                <div class="device-name">
+                    <label for="device-name">Connected to:</label>
+                    <input type="text" id="device-name" disabled>
+                </div>
+
+                <div class="ep-token">
+                    <label for="ep-token">EP Token:</label>
+                    <input type="text" id="ep-token" disabled>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- right column -->
+    <div class="right-column" id="right-column">
+
+<div class="checkin-section" id="section">
+    <img class="profile-picture" id="profile-picture">
+    <div class="info" id="info">
+        <div class="name" id="name">
+            <p class="first-name" id="first-name"></p>
+            <p class="last-name" id="last-name">
+        </div>
+        <p class="company-name" id="company-name"></p>
+        <p class="title" id="title"></p>
+        <p class="email" id="email"></p>
+    </div>
+</div>
+
+<!-- html markup for a 3.5" by 1.4" badge displaying: in row 1, company name, and in row two, first name, last name. in row three, their title. on the bottom left side, it will also display a QR code with the user's epToken, which we populated all this info with -->
+
+<div class="visitor-badge" id="badge">
+        <p class="badgetext badge-company-name draggable resizable" id="badge-company-name"></p>
+        <p class="badgetext badge-name draggable resizable" id="badge-name"></p>
+        <p class="badgetext badge-title draggable resizable" id="badge-title"></p>
+        <img class="badge-qr draggable" id="badge-qr">
+</div>
+<div class="sizing" id="sizing">
+    <!-- badge element sizing slider -->
+    <div class="currentElement" id="currentElement"></div>
+    <label for="myRange">Resize Badge</label>
+    <br>
+    <input type="range" min="1" max="50" value="25" class="slider" id="myRange">
+</div>
+
+<!-- add some whitespace below the badge -->
+<div class="whitespace" id="whitespace"></div>
+<div class="dataTablePlaceholder" id="dataTablePlaceholder"></div>
+<div id="bottomtoolbar" class="bottomtoolbar">
+    <button class="printbadge" id="printbadge">Print Badge</button>
+    <button id="editbutton" class="editbutton">Edit the Badge</button>
+<button id="dataTableButton" class="dataTableButton">Show Data Table</button>
+<button class="fetchButton" id="fetchButton">fetch fresh data</button>
+</div>
+</div>
+</div>
+<div class="popover" id="warningPopover">
+    <p>Warning!</p>
+    <p>This Visitor is Not Approved!</p>
+    <p>Please Direct This Visitor to Hisham or Kari</p>
+</div>
+</body>
+<script src="checkin.js"></script>
+<script src="fetchrequest.js"></script>
+<script src="badge-editor.js"></script>
+</html>
+</html>

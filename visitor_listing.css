@@ -1,0 +1,44 @@
+/* visitor listing datatable styling */
+.form-group {
+    margin-bottom: 0px;
+}
+.editorcontainer {
+    display: none;
+    position: relative;
+    height: auto;
+}
+.visitorModal {
+overflow: auto;
+position: relative;
+}
+.updating{
+    display: none;
+    /* in the middle of the modal, with a transparent background */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+html {
+    overflow: auto;
+    height: 100% !important;
+}
+body{
+    height: 100% !important;
+    
+}
+/* modalBackground to allow for listening for clicks outside of modal */
+/* .modalBackground {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+} */
+#dots{
+    display: inline-block;
+
+}

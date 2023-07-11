@@ -1,0 +1,33 @@
+.stafflinks {
+    background-color: #f5f5f500;
+    border: 1px solid rgba(204, 204, 204, 0);
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+
+}
+.stafflinks div{
+    margin-bottom: 10px;
+}
+.stafflinks button{
+/* list the buttons in separate rows, make them look cool */
+    justify-content: center;
+    text-align: center;
+    margin: 0 5px 5px 0;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    color: #333;
+    font-size: 1em;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Visitor Listing Table</title>
+<!-- <link rel="stylesheet" type="text/css" href="visitor_listing.css"> -->
+<!-- visitor listing styles -->
+<link rel="stylesheet" type="text/css" href="visitor_listing.css">
+<!-- viewport -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- datatables -->
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.css">
+<!-- bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
+<!-- dexie -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dexie/3.2.3/dexie.js"></script>
+<!-- dexie map -->
+<script src=""></script>
+</head>
+<body>
+<div id="container">
+<h1>Visitor Listing Table</h1>
+<!-- columns include: First Name, last Name, Company Name, Title, Email, and epToken -->
+<table id="visitor_listing" class="display" style="width:100%">
+<thead id="visitor_listing_head">
+<tr>
+<th>Entry ID</th>
+<th>First Name</th>
+<th>Last Name</th>
+<th>Company Name</th>
+<th>Title</th>
+<th>Email</th>
+<th>Phone</th>
+<th>epToken</th>
+<th>Street Address</th>
+<th>Street Address 2</th>
+<th>City</th>
+<th>State</th>
+<th>Zip</th>
+<th>Country</th>
+<th>Form ID</th>
+</tr>
+</thead>
+<tbody id="visitor_listing_body">   </tbody>
+</table>
+</div>
+
+<!-- create a modal called 'visitorModal' with more information on the visitor and a panel for options(we'll define later) -->
+<div id="visitorModal" class="modal">
+
+<!-- Modal content -->
+    <div class="modal-content">
+        <span class="modal-close-btn">&times;</span>
+        <div id="visitorModalContent"></div>
+    <div class="updating" id="updating">
+        <h1>Updating <div id="dots"></div></h1>
+    </div>
+    <div id="visitorModalOptions">
+        <a id="viewVisitor" href='https://www.example.com/visitor/' class='btn btn-primary'>View Visitor</a>
+        <a id="createBadge" href='checkin-counter.html/' class='btn btn-primary'>Create Badge</a>
+        <a id="editButton" href='#editButton' id='editButton' class='btn btn-primary'>Edit Visitor</a>
+    
+        <div class="editorcontainer" id="editorcontainer">
+            <h1>Visitor Editor</h1>
+            <!-- form will be populated by js -->
+            <form id="visitorEditor">
+            <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name">
+            </div>
+            <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+            <label for="companyName">Company Name</label>
+            <input type="text" class="form-control" id="companyName" name="companyName" placeholder="Company Name">
+            </div>
+            <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Title">
+            </div>
+            <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone">
+            </div>
+            <!-- address -->
+            <div class="form-group">
+            <label for="streetAddress">Address - Street</label>
+            <input type="text" class="form-control" id="streetAddress" name="streetAddress" placeholder="Street Address">
+            </div>
+            <div class="form-group">
+            <label for="address2">Address - Street 2</label>
+            <input type="text" class="form-control" id="streetAddress2" name="streetAddress2" placeholder="Street Address 2">
+            </div>
+            <div class="form-group">
+            <label for="city">Address - City</label>
+            <input type="text" class="form-control" id="city" name="city" placeholder="City">
+            </div>
+            <div class="form-group">
+            <label for="state">Address - State</label>
+            <input type="text" class="form-control" id="state" name="state" placeholder="State">
+            </div>
+            <div class="form-group">
+            <label for="zip">Address - Zip</label>
+            <input type="text" class="form-control" id="zip" name="zip" placeholder="Zip">
+            </div>
+            <div class="form-group">
+            <label for="country">Address - Country</label>
+            <input type="text" class="form-control" id="country" name="country" placeholder="Country">
+            </div>
+            <!-- end address -->
+            <div class="form-group">
+            <label for="epToken">epToken</label>
+            <!-- uneditable -->
+            <input type="text" class="form-control" id="epToken" name="epToken" placeholder="epToken" readonly>
+            </div>
+            <button id="saveEdits" type="submit" class="btn btn-default">Save</button>
+            <button type="button" class="btn btn-default" id="closeVisitor">Close</button>
+            </form>
+            </div>  
+    </div>
+
+</div>
+</div>
+<script src="visitorslist.js"></script>
+<script src="edit-visitor.js"></script>
+</body>
+</html>

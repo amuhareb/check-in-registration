@@ -1,0 +1,380 @@
+.logo {
+  color: #000000;
+  font-size: 45px;
+  width: 50%;
+  text-align: center;
+  /* middle of the page */
+  margin: 0 auto;
+
+}
+.title{
+  color: #000000;
+  font-size: 30px;
+  text-align: center;
+}
+.ep-token{
+  background-color: #ffffff;
+  border-color: #000000;
+  font-size: 20px;
+}
+.ep-token input{
+  background-color: #ffffff;
+  border-color: #000000;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  padding: 5px;
+}
+.device-name{
+  color: #000000;
+  font-size: 20px;
+}
+.device-name > input{
+  background-color: #ffffff;
+  border-color: #000000;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  padding: 5px;
+}
+.connect-btn{
+  background-color: #ffffff;
+  border-color: #000000;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 300px;
+  height: 50px;
+  padding: 5px;
+  font-size: 20px;
+  color: #000000;
+  margin: 1em 3em 0em 3em;
+}
+.previousdevices{
+  color: #000000;
+  font-size: 20px;
+}
+.device-list{
+  color: #000000;
+  font-size: 20px;
+}
+ul#device-list > button{
+  background-color: #ffffff;
+  border-color: #000000;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  color: #000000;
+}
+/* align all */
+.container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+/* make all input boxes aligned and same width */
+input{
+  width: 100%;
+}
+form {
+  display: flex;
+  flex-direction: row;
+}
+.checkin-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 1em;
+  border-style: solid;
+  border-width: 1px;
+  padding-top: 3em;
+  margin-top:1em;
+  width: 50%;
+  margin: 2em auto auto auto;
+}
+
+.profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #000000;
+}
+
+.name > *{
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.company {
+  font-size: 15px;
+}
+
+.title {
+  font-size: 15px;
+}
+.button{
+  background-color: #ffffff;
+  border-color: #000000;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 300px;
+  height: 50px;
+  padding: 5px;
+  font-size: 20px;
+  color: #000000;
+}
+.staff-ID{
+  color: #000000;
+  font-size: 15px;
+  /* elements in this should all be in one row */
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.stafftextinput{
+  background-color: #ffffff;
+  border-color: #6f6f6f;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 300px;
+  height: 50px;
+  font-size: 20px;
+  display: inline-block;
+}
+.staff-submit-button{
+  background-color: #ffffff;
+  border-color: #878787;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  font-size: 15px;
+  color: #000000;
+}
+.fetchButton{
+  background-color: #ffffff;
+  border-color: #000000;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 100px;
+  height: 50px;
+  padding: 5px;
+  font-size: 15px;
+  color: #000000;
+
+
+}
+.update-button{
+  background-color: #ffffff;
+  border-color: #000000;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 200px;
+  height: 30px;
+  font-size: 20px;
+  color: #000000;
+  /* center this button  in the page*/
+  margin: 0 auto;
+  /* hide the button */
+  display: none;
+}
+.greeting{
+  font-size: 20px;
+  font-weight: bold;
+  text-align:center;
+}
+.visitor-badge {
+    /* the badge should be centered in the page */
+    margin: 0 auto;
+    /* the badge should be 300px wide and 200px high */
+    width: 90mm;
+    height: 38mm;
+    /* the badge should have a border */
+    border: 1px solid #000000;
+    /* the badge should have a background color */
+    background-color: #ffffff;
+    /* the badge should have a position relative */
+    overflow: hidden;
+    position: relative;
+}
+.badgetext{
+text-align: center;
+line-height: calc(38mm / 21);
+box-sizing: border-box;
+touch-action: none;
+position: absolute;
+margin-top: 15px !important;
+}
+
+
+.badge-company-name {
+font-size: 32px;
+position: absolute;
+}
+.badge-name {
+font-size: 20px;
+height: fit-content;
+position: absolute;
+
+}
+.badge-title {
+font-size: 15px;
+height: fit-content;
+position: absolute;
+}
+.badge-qr {
+    max-width: 50px;
+    max-height: 50px;
+    /* should be inside the badge, on the bottom left */
+    position: absolute;
+}
+.badgeeditor{
+  /* a floating toolbar to edit the styling of the badge before printing */
+  position: fixed;
+  width: 25%;
+  height: auto;
+  background-color: rgba(255, 255, 255, 1);
+  /* hide the toolbar */
+  display: none;
+  z-index: 100;
+/* thin border */
+  border: 1px solid #000000;
+}
+.test-button{
+  background-color: #ffffff;
+  border-color: #000000;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 75px;
+  height: 25px;
+  font-size: 15px;
+  color: #000000;
+  position: relative;
+}
+.printbadge{
+  background-color: #ffffff;
+  border-color: #000000;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 75px;
+  height: 50px;
+  font-size: 15px;
+  color: #000000;
+  position: relative;
+}
+.editbutton{
+  background-color: #ffffff;
+  border-color: #000000;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 5px;
+  width: 75px;
+  height: 50px;
+  font-size: 15px;
+  color: #000000;
+  position: relative;
+}
+
+#badgeeditorheader{
+  /* make it like a modal header */
+  background-color: #dddddd;
+  color: #000000;
+  padding: .5em;
+  text-align: right;
+
+}
+div#badgeeditorheader {
+  font-size: x-large;
+  text-align: center;
+}
+.bottomtoolbar{
+  /* a small toolbar at the bottom of the page with buttons in a flex grid */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #dddddd;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  /* only show when user scrolls below the badge */
+
+}
+.whitespace{
+  /* some extra whitspace as padding  */
+  height: 10em;
+
+}
+.previousdevices > h2{
+  text-align: center;
+}
+.previousdevices > ul{
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 1em 0;
+}
+.badgeeditor-toolbar-margintop{
+  /* hide */
+  display: none;
+}
+.badgeeditor-toolbar-marginbottom{
+  /* hide */
+  display: none;
+}
+.badgeeditor-toolbar-margintoggle > div{
+  /* make it smol */
+  font-size: 10px;
+  /* center the text */
+  text-align: center;
+  /* center the text vertically */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* make the checkbox smol */
+  height: 1em;
+}
+/* the checkbox should be on the same line as the label */
+.badgeeditor-toolbar-margintoggle > label{
+  display: inline;
+}
+.badgeeditor-toolbar-margintoggle > input{
+  /* make the checkbox smol */
+  height: 1em;
+  width: 1em;
+}
+.draggable {
+  width: fit-content;
+  margin: auto auto auto auto;
+  position: relative;
+  touch-action: none;
+  box-sizing: border-box;
+  }
+
+  .resizable {
+    touch-action: none;
+    /* This makes things *much* easier */
+    box-sizing: border-box;
+  }

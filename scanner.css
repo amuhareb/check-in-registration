@@ -1,0 +1,192 @@
+.logo {
+    color: #000000;
+    font-size: 45px;
+    width: 50%;
+    text-align: center;
+    /* middle of the page */
+    margin: 0 auto;
+  
+  }
+  .title{
+    color: #000000;
+    font-size: 30px;
+    text-align: center;
+  }
+  .ep-token{
+    background-color: #ffffff;
+    border-color: #000000;
+    font-size: 20px;
+  }
+  .ep-token input{
+    background-color: #ffffff;
+    border-color: #000000;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    padding: 5px;
+  }
+  .device-name{
+    color: #000000;
+    font-size: 20px;
+  }
+  .device-name > input{
+    background-color: #ffffff;
+    border-color: #000000;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    padding: 5px;
+  }
+  .connect-btn{
+    background-color: #ffffff;
+    border-color: #000000;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    width: 300px;
+    height: 50px;
+    padding: 5px;
+    font-size: 20px;
+    color: #000000;
+    margin: 1em 3em 0em 3em;
+  }
+  .previousdevices{
+    color: #000000;
+    font-size: 20px;
+  }
+  .device-list{
+    color: #000000;
+    font-size: 20px;
+  }
+  ul#device-list > button{
+    background-color: #ffffff;
+    border-color: #000000;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    color: #000000;
+  }
+  /* align all */
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  /* make all input boxes aligned and same width */
+  input{
+    width: 100%;
+  }
+  form {
+    display: flex;
+    flex-direction: row;
+  }
+  .checkin-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 1em;
+    border-style: solid;
+    border-width: 1px;
+    padding-top: 3em;
+    margin-top:1em;
+    width: 25%;
+    margin: 2em auto auto auto;
+  }
+  
+  .profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid #000000;
+  }
+  
+  .name > *{
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .company-name {
+    font-size: 15px;
+  }
+  
+  .title {
+    font-size: 15px;
+  }
+  .button{
+    background-color: #ffffff;
+    border-color: #000000;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    width: 300px;
+    height: 50px;
+    padding: 5px;
+    font-size: 20px;
+    color: #000000;
+  }
+  .staff-ID{
+    color: #000000;
+    font-size: 15px;
+    /* elements in this should all be in one row */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  .stafftextinput{
+    background-color: #ffffff;
+    border-color: #6f6f6f;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    display: inline-block;
+  }
+
+  .fetchButton{
+    background-color: #ffffff;
+    border-color: #000000;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    width: 100px;
+    height: 50px;
+    padding: 5px;
+    font-size: 15px;
+    color: #000000;
+  
+  
+  }
+  .update-button{
+    background-color: #ffffff;
+    border-color: #000000;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+    font-size: 20px;
+    color: #000000;
+    /* center this button  in the page*/
+    margin: 0 auto;
+    /* hide the button */
+    display: none;
+  }
+  .greeting{
+    font-size: 20px;
+    font-weight: bold;
+    text-align:center;
+  }

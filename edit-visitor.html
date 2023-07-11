@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Visitor Editor</title>
+<link rel="stylesheet" type="text/css" href="visitor_listing.css">
+<!-- jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="editorcontainer" id="editorcontainer">
+<h1>Visitor Editor</h1>
+<!-- form will be populated by js -->
+<form id="visitorEditor">
+<div class="form-group">
+<label for="firstName">First Name</label>
+<input type="text" class="form-control" id="firstName" name="firstName" placeholder="First Name">
+</div>
+<div class="form-group">
+<label for="lastName">Last Name</label>
+<input type="text" class="form-control" id="lastName" name="lastName" placeholder="Last Name">
+</div>
+<div class="form-group">
+<label for="companyName">Company Name</label>
+<input type="text" class="form-control" id="companyName" name="companyName" placeholder="Company Name">
+</div>
+<div class="form-group">
+<label for="title">Title</label>
+<input type="text" class="form-control" id="title" name="title" placeholder="Title">
+</div>
+<div class="form-group">
+<label for="email">Email</label>
+<input type="text" class="form-control" id="email" name="email" placeholder="Email">
+</div>
+<div class="form-group">
+<label for="phone">Phone</label>
+<input type="text" class="form-control" id="phone" name="phone" placeholder="Phone">
+</div>
+<!-- address -->
+<div class="form-group">
+<label for="streetAddress">Address - Street</label>
+<input type="text" class="form-control" id="streetAddress" name="streetAddress" placeholder="Street Address">
+</div>
+<div class="form-group">
+<label for="address2">Address - Street 2</label>
+<input type="text" class="form-control" id="streetAddress2" name="streetAddress2" placeholder="Street Address 2">
+</div>
+<div class="form-group">
+<label for="city">Address - City</label>
+<input type="text" class="form-control" id="city" name="city" placeholder="City">
+</div>
+<div class="form-group">
+<label for="state">Address - State</label>
+<input type="text" class="form-control" id="state" name="state" placeholder="State">
+</div>
+<div class="form-group">
+<label for="zip">Address - Zip</label>
+<input type="text" class="form-control" id="zip" name="zip" placeholder="Zip">
+</div>
+<div class="form-group">
+<label for="country">Address - Country</label>
+<input type="text" class="form-control" id="country" name="country" placeholder="Country">
+</div>
+<!-- end address -->
+<div class="form-group">
+<label for="epToken">epToken</label>
+<!-- uneditable -->
+<input type="text" class="form-control" id="epToken" name="epToken" placeholder="epToken" readonly>
+</div>
+</form>
+</div>  
+</form>

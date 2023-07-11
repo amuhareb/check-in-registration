@@ -1,0 +1,68 @@
+/* mobile styles to make it look more like a mobile app when on a mobile device */
+/* all the input fields should be much smaller and in a grid instead of absolute position */
+@media only screen and (max-width: 600px) {
+    .logo {
+      font-size: 30px;
+      width: 100%;
+    }
+    .title{
+      font-size: 20px;
+    }
+    .ep-token{
+      font-size: 15px;
+    }
+    .ep-token input{
+      font-size: 15px;
+      width: 100%;
+    }
+    .device-name{
+      font-size: 15px;
+    }
+    .device-name > input{
+      font-size: 15px;
+      width: 100%;
+    }
+    .connect-btn{
+      font-size: 15px;
+    }
+    .previousdevices{
+      font-size: 15px;
+    }
+    .device-list{
+      font-size: 15px;
+    }
+    ul#device-list > button{
+      font-size: 15px;
+    }
+    .container{
+      width: 100%;
+    }
+    .checkin-section {
+      width: 100%;
+    }
+    .name > *{
+      font-size: 15px;
+    }
+    .company {
+      font-size: 10px;
+    }
+    .title {
+      font-size: 10px;
+    }
+    .button{
+      font-size: 15px;
+    }
+    /* staff input and button should still be in one row on smaller screens */
+    .staffID{
+      font-size: 15px;
+    }
+    .stafftextinput{
+      font-size: 15px;
+    }
+    .staff-submit-button{
+      font-size: 15px;
+    }
+    .fetchButton{
+      font-size: 15px;
+    }
+  }
