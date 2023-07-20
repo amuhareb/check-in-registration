@@ -250,7 +250,7 @@ const db = event.target.result;
                         fetch('https://americanevents.com/wp-json/gf/v2/entries', {
             method: 'POST',
             headers: {
-              'Authorization': 'Basic ' + btoa('ck_88f71f290fb7a0584ec2709f5424f7ecd4e5d9c4:cs_622f5926d7108322a8700fbba7e56e8773702c57'),
+              'Authorization': 'Basic ' + btoa('ck_3c99af000f27f96a9d7bf766c6b2c9425b295ddf:cs_74b44fcf585d44b564143ced959e399d1e5f33d2'),
               'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -319,11 +319,11 @@ const db = event.target.result;
 
 //for testing, create a function to set trigger the populateCheckinSection function with the epToken "ac5da0fbd5c95e10de1d35dd3b615aa3"
 function test() {
-    populateCheckinSection("ac5da0fbd5c95e10de1d35dd3b615aa3");
+    populateCheckinSection("7d39f6c7fd068f3534d23c75b77ca6c2");
 }
 //test2 is an approved visitor
 function test2() {
-    populateCheckinSection("089223a03d1c456cda2d4b76b7a87416");
+    populateCheckinSection("7d39f6c7fd068f3534d23c75b77ca6c2");
 }
 
     function printBadge() {
@@ -366,3 +366,5 @@ function test2() {
 
         document.getElementById("bottomtoolbar").style.display = "flex";
 
+// use a test epToken to populate the checkin section: 7d39f6c7fd068f3534d23c75b77ca6c2
+populateCheckinSection("7d39f6c7fd068f3534d23c75b77ca6c2");

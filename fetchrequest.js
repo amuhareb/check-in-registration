@@ -10,13 +10,13 @@ function fetchEntries() {
       'Authorization': 'Basic ' + btoa('ck_7606aa328b6b7ed1c7fc46d9b48a31ea8651cf0e:cs_3a9c9a0831408c8c04d24b59d715d0f5e00a9494')
     }
   }).then(response => response.json());
-  const form2Promise = fetch(`https://americanevents.com/wp-json/gf/v2/entries?search={"field_filters":[{"key":"form_id","value":"54","operator":"is"}]}&paging[page_size]=3000`, {
+  const form2Promise = fetch(`https://americanevents.com/wp-json/gf/v2/entries?search={"field_filters":[{"key":"form_id","value":"73","operator":"is"}]}&paging[page_size]=3000`, {
     method: 'GET',
     headers: {
       'Authorization': 'Basic ' + btoa('ck_7606aa328b6b7ed1c7fc46d9b48a31ea8651cf0e:cs_3a9c9a0831408c8c04d24b59d715d0f5e00a9494')
     }
   }).then(response => response.json());
-  Promise.all([form1Promise, form2Promise])
+    Promise.all([form1Promise, form2Promise])
     .then(([form1Data, form2Data]) => {
       const combinedData = [...form1Data.entries, ...form2Data.entries];
       console.log(`Total number of entries: ${combinedData.length}`);
@@ -69,13 +69,13 @@ function countEntries() {
       'Authorization': 'Basic ' + btoa('ck_7606aa328b6b7ed1c7fc46d9b48a31ea8651cf0e:cs_3a9c9a0831408c8c04d24b59d715d0f5e00a9494')
     }
   }).then(response => response.json());
-  const form2Promise = fetch(`https://americanevents.com/wp-json/gf/v2/entries?search={"field_filters":[{"key":"form_id","value":"54","operator":"is"}]}&paging[page_size]=3000`, {
+  const form2Promise = fetch(`https://americanevents.com/wp-json/gf/v2/entries?search={"field_filters":[{"key":"form_id","value":"73","operator":"is"}]}&paging[page_size]=3000`, {
     method: 'GET',
     headers: {
       'Authorization': 'Basic ' + btoa('ck_7606aa328b6b7ed1c7fc46d9b48a31ea8651cf0e:cs_3a9c9a0831408c8c04d24b59d715d0f5e00a9494')
     }
   }).then(response => response.json());
-  Promise.all([form1Promise, form2Promise])
+    Promise.all([form1Promise, form2Promise])
     .then(([form1Data, form2Data]) => {
       if (form1Data.total_count + form2Data.total_count !== visitorData.length) {
         console.log('The number of entries in the database is different than the number of entries in the form. Deleting and re-adding entries to the database.');
@@ -95,7 +95,39 @@ function countEntries() {
     .catch(error => console.log(error));
 }
 
-  
+// function to post to form 85 where:
+// 1.3 = first name, 1.6 = last name, title = 3, email = 4, company name = 5, check-in time = 6, form_title = 13, form id = 7, fg_easypassthrough_token = 8
+function postToForm85(epToken) {
+  const request = indexedDB.open("visitorData", 1);
+  console.log(epToken);
+  request.onsuccess = function(event) {
+    const db = event.target.result;
+    const transaction = db.transaction(["entries"], "readonly");
+    const objectStore = transaction.objectStore("entries");
+    const request = objectStore.get(epToken);
+    request.onsuccess = function(event) {
+      const data = event.target.result;
+      const form85Data = {
+        input_1_3: data['1.3'],
+        input_1_6: data['1.6'],
+        input_3: data['3'],
+        input_4: data['4'],
+        input_5: data['5'],
+        input_6: data['6'],
+        input_13: data['13'],
+        input_7: data['7'],
+        input_8: data['8']
+      }
+      fetch('https://americanevents.com/wp-json/gf/v2/forms/85/entries', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Basic ' + btoa('ck_7606aa328b6b7ed1c7fc46d9b48a31ea8651cf0e:cs_3a9c9a0831408c8c04d24b59d715d0f5e00a9494')
+        }
+      })
+      console.log(form85Data);
+    }
+  }
+}              
 
 //download indexed db as a json file
 function download() {

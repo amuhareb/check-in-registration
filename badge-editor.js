@@ -1,18 +1,32 @@
 function dragMoveListener (event) {
-    var target = event.target,
-        // keep the dragged position in the data-x/data-y attributes
-        x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
-        y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+  var target = event.target,
+      // keep the dragged position in the data-x/data-y attributes
+      x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+      y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
 
-    // translate the element
-    target.style.webkitTransform =
-    target.style.transform =
-      'translate(' + x + 'px, ' + y + 'px)';
+  // calculate the center point of the parent element
+  var parentRect = target.parentNode.getBoundingClientRect();
+  var parentCenterX = parentRect.left + parentRect.width / 2;
 
-    // update the posiion attributes
-    target.setAttribute('data-x', x);
-    target.setAttribute('data-y', y);
-  }
+  // snap the dragged element to the center point
+  var elementRect = target.getBoundingClientRect();
+  var elementCenterX = elementRect.left + elementRect.width / 2;
+  var offsetX = parentCenterX - elementCenterX;
+  x += offsetX;
+
+  // translate the element
+  target.style.webkitTransform =
+  target.style.transform =
+    'translate(' + x + 'px, ' + y + 'px)';
+
+  // update the position attributes
+  target.setAttribute('data-x', x);
+  target.setAttribute('data-y', y);
+
+  // store the position data in localStorage
+  localStorage.setItem(target.id + '-position-x', x);
+  localStorage.setItem(target.id + '-position-y', y);
+}
 
   interact('.draggable')
   .draggable({
@@ -22,8 +36,7 @@ function dragMoveListener (event) {
       elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
     }
   })
-
-//upon clicking a draggable element, change the innerhtml of the currentElement div to the id of the clicked element
+  //upon clicking a draggable element, change the innerhtml of the currentElement div to the id of the clicked element
 $('.draggable').click(function() {
   var currentElement = document.getElementById('currentElement');
   var currentSize = window.getComputedStyle(this, null).getPropertyValue('font-size');
@@ -55,3 +68,29 @@ $('.draggable').dblclick(function() {
   currentElementId.innerHTML = currentElementText;
 }
 );
+
+function restoreElementPositions() {
+  // loop through all draggable elements
+  var draggables = document.querySelectorAll('.draggable');
+  for (var i = 0; i < draggables.length; i++) {
+    var draggable = draggables[i];
+    var id = draggable.id;
+
+    // check if position data exists in localStorage
+    var x = localStorage.getItem(id + '-position-x');
+    var y = localStorage.getItem(id + '-position-y');
+    if (x !== null && y !== null) {
+      // set the position attributes of the element
+      draggable.setAttribute('data-x', x);
+      draggable.setAttribute('data-y', y);
+      draggable.style.webkitTransform =
+      draggable.style.transform =
+        'translate(' + x + 'px, ' + y + 'px)';
+    }
+  }
+}
+
+// call the restoreElementFontSizes function on page load
+window.onload = function() {
+  restoreElementPositions();
+};

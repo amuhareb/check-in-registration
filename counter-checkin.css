@@ -378,3 +378,39 @@ div#badgeeditorheader {
     /* This makes things *much* easier */
     box-sizing: border-box;
   }
+  .modal-content.regModal {
+    top: 25%;
+    left: 25%;
+    width: fit-content;
+    height: 50%;
+    display: grid;
+    justify-items: center;
+    align-items: start;
+    justify-content: space-around;
+    text-align: -webkit-center;
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+#registration-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+
+.regModal > .registration-form{
+  /* column */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* row */
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  /* gap between rows and columns */
+  gap: 1em;
+  /* center the items in the grid */
+  justify-items: center;
+}
+/* reg modal form items in a column */
+.regModal > .registration-form > *{
+  grid-column: 1 / 3;
+}

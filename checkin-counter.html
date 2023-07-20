@@ -58,6 +58,8 @@
     </div>
     <!-- right column -->
     <div class="right-column" id="right-column">
+<!-- open registration form modal button -->
+<button class="open-registration-modal" id="open-registration-modal">On-Site Registration</button>
 
 <div class="checkin-section" id="section">
     <img class="profile-picture" id="profile-picture">
@@ -104,8 +106,39 @@
     <p>This Visitor is Not Approved!</p>
     <p>Please Direct This Visitor to Hisham or Kari</p>
 </div>
+<!-- on-site registration form modal -->
+<div class="modal " id="registration-modal">
+    <div class="modal-content regModal">
+        <span class="close-button">&times;</span>
+        <h2>On-Site Registration</h2>
+        <form id="registration-form">
+            <div class="form-group">
+                <label for="form-first-name">First Name:</label>
+                <input type="text" id="form-first-name">
+            </div>
+            <div class="form-group">
+                <label for="form-last-name">Last Name:</label>
+                <input type="text" id="form-last-name">
+            </div>
+            <div class="form-group">
+                <label for="form-email">Email:</label>
+                <input type="email" id="form-email">
+            </div>
+            <div class="form-group">
+                <label for="form-company">Company:</label>
+                <input type="text" id="form-company">
+            </div>
+            <div class="form-group">
+                <label for="form-title">Title:</label>
+                <input type="text" id="form-title">
+            </div>
+            <button type="submit" id="register-button">Register</button>
+        </form>
+    </div>
+</div>
+
 </body>
-<script src="checkin.js"></script>
+<script src="checkin2.js"></script>
 <script src="fetchrequest.js"></script>
 <script src="badge-editor.js"></script>
 </html>

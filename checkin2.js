@@ -182,10 +182,48 @@ window.onload = function() {
         //do something else
     }
 }
-
+function postToForm85(epToken) {
+  const request = indexedDB.open("visitorData", 1);
+  console.log(epToken);
+  request.onsuccess = function(event) {
+    const db = event.target.result;
+    const transaction = db.transaction(["entries"], "readonly");
+    const objectStore = transaction.objectStore("entries");
+    const request = objectStore.get(epToken);
+    request.onsuccess = function(event) {
+      const data = event.target.result;
+      if (data !== undefined) {
+        const form85Data = {
+            "input_1_3": data['1.3'],
+            "input_1_6": data['1.6'],
+            "input_3": data['3'],
+            "input_4": data['4'],
+            "input_5": data['5'],
+            "input_6": data['6'],
+            "input_7": data['7'],
+            "input_8": data['8'],
+            "input_13": data['13'],
+            "form_id": 85
+          }
+                  console.log(form85Data);   
+        fetch('https://americanevents.com/wp-json/gf/v2/forms/85/entries', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Basic ' + btoa('ck_7606aa328b6b7ed1c7fc46d9b48a31ea8651cf0e:cs_3a9c9a0831408c8c04d24b59d715d0f5e00a9494')
+          }
+        })
+        console.log(form85Data);
+      } else {
+        console.log('Data not found for epToken: ' + epToken);
+      }
+    }
+    request.onerror = function(event) {
+      console.log('Error retrieving data for epToken: ' + epToken);
+    }
+  }
+}
 //search the fg_easypassthrough_token key in the entries object store under the visitorData indexDb for the value of the epToken variable
 function populateCheckinSection(epToken) {
-    let db;
     const request = indexedDB.open("visitorData", 1);
 
     // open the "log" database
@@ -237,21 +275,142 @@ function populateCheckinSection(epToken) {
                 if (data.form_id == 2) {
                     document.getElementById("ep-token").innerHTML = data.fg_easypassthrough_token;
                     document.getElementById("company-name").innerHTML = data[2];
-                    document.getElementById("first-name").innerHTML = data[1];
-                    // add logging functionality here
+                    document.getElementById("first-name").innerHTML = data[1.3];
+                    document.getElementById("last-name").innerHTML = data[1.6];
+                    document.getElementById("email").innerHTML = data[4];
+                    // https://americanevents.com/wp-content/uploads/gravity_forms/2-b86e11c27810acd2a201751fdb206ce1/2023/07/dog-png-30.png|:||:||:||:|
+                    // we need to split the string at the |:| delimiter
+                    document.getElementById("profile-picture").src = data[21].split("|:|")[0];
+                    document.getElementById("badge-name").innerHTML = data[1.3] + " " + data[1.6];
+                    document.getElementById("badge-company-name").innerHTML = data[2];
+                    document.getElementById("badge-title").innerHTML = data[3];
+                    fetch('https://americanevents.com/wp-json/gf/v2/entries', {
+                        method: 'POST',
+                        headers: {
+                          'Authorization': 'Basic ' + btoa('ck_88f71f290fb7a0584ec2709f5424f7ecd4e5d9c4:cs_622f5926d7108322a8700fbba7e56e8773702c57'),
+                          'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            // 1.3 = first name, 1.6 = last name, title = 3, email = 4, company name = 5, check-in time = 6, form_title = 13, form id = 7, fg_easypassthrough_token = 8
+                            "form_id": 85,
+                            "1.3": data[1.3],
+                            "1.6": data[1.6],
+                            "3": data[3],
+                            "4": data[4],
+                            "5": data[2],
+                            // output current time in the format "2021-01-01 12:00:00"
+                            "6": new Date().toISOString().slice(0, 19).replace('T', ' '),
+                            "7": data.form_id,
+                            "8": data.fg_easypassthrough_token
+                        }),
+                    })
                 }
-            }
+                else if (data.form_id == 73) {
+                    document.getElementById("ep-token").innerHTML = data[11];
+                    document.getElementById("company-name").innerHTML = data[4];
+                    document.getElementById("first-name").innerHTML = data[1.3];
+                    document.getElementById("last-name").innerHTML = data[1.6];
+                    document.getElementById("email").innerHTML = data[13];
+                    // populate badge with first name, last name, company name, title, and a qr code with the epToken
+                    document.getElementById("badge-name").innerHTML = data[1.3] + " " + data[1.6];
+                    document.getElementById("badge-company-name").innerHTML = data[4];
+                    document.getElementById("badge-title").innerHTML = data[3];
+                    fetch('https://americanevents.com/wp-json/gf/v2/entries', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': 'Basic ' + btoa('ck_88f71f290fb7a0584ec2709f5424f7ecd4e5d9c4:cs_622f5926d7108322a8700fbba7e56e8773702c57'),
+                            'Content-Type': 'application/json'
+                          },
+                        body: JSON.stringify({
+                            // 1.3 = first name, 1.6 = last name, title = 3, email = 4, company name = 5, check-in time = 6, form_title = 13, form id = 7, fg_easypassthrough_token = 8
+                            "form_id": 85,
+                            "1.3": data[1.3],
+                            "1.6": data[1.6],
+                            "3": data[3],
+                            "4": data[13],
+                            "5": data[4],
+                            "6": new Date().toISOString().slice(0, 19).replace('T', ' '),
+                            "7": data.form_id,
+                            "8": data.fg_easypassthrough_token
+                        }),
+                    })
+                    }
+                }
+            }  
         }
     }
-}
+    const form = document.querySelector('#registration-form');
+    // open modal with <button class="open-registration-modal" id="open-registration-modal">On-Site Registration</button>
+    const openModal = document.querySelector('.open-registration-modal');
+    const modal = document.querySelector('#registration-modal');
+    const closeButton = document.querySelector('.close-button');
+    const registerButton = document.querySelector('#register-button');
+    
+    openModal.addEventListener('click', () => {
+      modal.style.display = 'block';
+    });
+    
+    closeButton.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    
+    window.addEventListener('click', (event) => {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    });
 
+    form.addEventListener('submit', (event) => {
+          event.preventDefault(); // prevent the form from submitting normally
+    
+      const firstName = document.querySelector('#form-first-name').value;
+      const lastName = document.querySelector('#form-last-name').value;
+      const email = document.querySelector('#form-email').value;
+      const company = document.querySelector('#form-company').value;
+      const title = document.querySelector('#form-title').value;
+    
+      // make a POST request to the form 85 endpoint with the form data
+      fetch('https://americanevents.com/wp-json/gf/v2/entries', {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Basic ' + btoa('ck_88f71f290fb7a0584ec2709f5424f7ecd4e5d9c4:cs_622f5926d7108322a8700fbba7e56e8773702c57'),
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "form_id": 85,
+          "1.3": firstName,
+          "1.6": lastName,
+          "3": title,
+          "4": email,
+          "5": company,
+          "6": new Date().toISOString().slice(0, 19).replace('T', ' '),
+          "13": "On-Site Registration"
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // populate the badge with the submitted information
+        document.getElementById("badge-name").innerHTML = firstName + " " + lastName;
+        document.getElementById("badge-company-name").innerHTML = company;
+        document.getElementById("badge-title").innerHTML = title;
+        // populate the checkin section with the submitted information
+        document.getElementById("ep-token").innerHTML = data[8];
+        document.getElementById("company-name").innerHTML = company;
+        document.getElementById("first-name").innerHTML = firstName;
+        document.getElementById("last-name").innerHTML = lastName;
+        document.getElementById("email").innerHTML = email;
+        // close the modal
+        modal.style.display = 'none';
+      })
+      .catch(error => console.error(error));
+    });
 //for testing, create a function to set trigger the populateCheckinSection function with the epToken "ac5da0fbd5c95e10de1d35dd3b615aa3"
 function test() {
-    populateCheckinSection("ac5da0fbd5c95e10de1d35dd3b615aa3");
+    populateCheckinSection("66f1bc7766b5d5658d3c21824cccf3d3");
 }
 //test2 is an approved visitor
 function test2() {
-    populateCheckinSection("089223a03d1c456cda2d4b76b7a87416");
+    populateCheckinSection("14279b4ddf6a9ba35ae80f380a09a261");
 }
 
 function logMessage(message) {
@@ -273,9 +432,42 @@ function logMessage(message) {
       };
     };
   }
-        
-      //attach the printBadge function to the print button
-        document.getElementById('printbadge').onclick = printBadge;
 
-        document.getElementById("bottomtoolbar").style.display = "flex";
+  function printBadge() {
+    var tmp = document.createDocumentFragment(),
+    printme = document.getElementById('badge').cloneNode(true);
+    printme.style.height = '37mm';
+    printme.style.width = '90mm';
+    printme.style.marginBottom = '0';
+    printme.style.border = 'none';
+    //get rid of the background image 
+    printme.style.top = '0';
+    printme.style.left = '0';
+    //clear .badgetext elements top style in the cloned element
+    let badgeText = printme.getElementsByClassName("badgetext");
+    for(let i = 0; i < badgeText.length; i++) {
+        badgeText[i].style.top = '0';
+    }
+    //do the same for the badge-qr 
+    let badgeQR = printme.getElementsByClassName("badge-qr");
+    for(let i = 0; i < badgeQR.length; i++) {
+    }      
+    while (document.body.firstChild) {
+      tmp.appendChild(document.body.firstChild);
+    }
+    setTimeout(function() {
+
+    document.body.appendChild(printme);
+    window.print();
+  
+    while (document.body.firstChild) {
+      document.body.removeChild(document.body.firstChild);
+    }
+    document.body.appendChild(tmp);
+  }
+    , 100);
+}
+document.getElementById('printbadge').onclick = printBadge;
+
+document.getElementById("bottomtoolbar").style.display = "flex";
 
